@@ -1,0 +1,44 @@
+{
+  // Configuración de TypeScript para el proyecto.
+  //
+  // Nota para cuando inicialices Expo en tu máquina:
+  //   Expo genera su propio tsconfig.json que hace "extends": "expo/tsconfig.base".
+  //   Cuando eso ocurra, puedes fusionar esta configuración con la de Expo
+  //   (básicamente añadir el bloque "extends" de Expo arriba). Por ahora, este
+  //   tsconfig es autónomo para que puedas verificar los tipos con:
+  //
+  //       npx tsc --noEmit
+  //
+  //   sin necesidad de tener Expo instalado todavía.
+  "compilerOptions": {
+    "target": "ESNext",            // Compilamos pensando en JS moderno (React Native lo soporta).
+    "module": "ESNext",
+    "moduleResolution": "Bundler", // Resolución de módulos moderna, la que usa Expo/Metro.
+    "lib": ["ESNext", "DOM"],      // DOM es útil para tipos globales como console, setTimeout, etc.
+    "jsx": "react-native",         // Sintaxis JSX propia de React Native.
+
+    // --- Rigor de tipos (clave para aprender TypeScript bien) ---
+    "strict": true,                // Activa TODAS las comprobaciones estrictas de una vez.
+    "noUnusedLocals": true,        // Avisa de variables declaradas y no usadas.
+    "noUnusedParameters": true,    // Avisa de parámetros no usados.
+    "noFallthroughCasesInSwitch": true, // Evita olvidar un "break" en un switch.
+    "noImplicitReturns": true,     // Todas las ramas de una función deben devolver (o ninguna).
+    "forceConsistentCasingInFileNames": true,
+
+    // --- Interoperabilidad ---
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,          // No revisa tipos dentro de node_modules (más rápido).
+    "noEmit": true,                // No generamos archivos .js; solo verificamos tipos.
+
+    // Alias para importar con "@/..." en vez de rutas relativas largas.
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules", ".agents"]
+}
